@@ -1,0 +1,114 @@
+/*
+Theme Name: M2M
+Theme URI: http://wordpress.org/
+Author: andCulture
+Version: 1
+*/
+
+#content {
+  width: 738px;
+}
+
+#content h2.entry-title {
+  margin:0;padding:0 !important;
+  font-family: IntervalSansPro-BoldCond, Arial !important;
+  font-size: 36px;
+  line-height:42px;
+}
+
+#content .entry-date {
+  padding:3px 3px 3px 0;
+  font-size: 25px;
+  color: #666;
+  font-family: IntervalSansPro-BoldCond, Arial !important;
+  background-color:#eee;
+}
+#content .entry-date .date-divider {
+  font-family: IntervalSansPro-BoldCond, Arial !important;
+  color:#eecf01;
+}
+
+#content .entry-utility { 
+  float: left;
+  width: 150px;
+}
+
+#content .post {
+  margin-left: 200px;
+  }
+   #content .post p {
+    margin:0;padding:0 !important;
+  }
+
+#content .entry-summary {
+  margin: 0 0 40px 0;
+  height: auto;
+}
+
+#sidebar {
+  width: 190px;
+  float: right;
+  }
+   #sidebar .m2m-category-list {
+    margin:0;padding:0;
+    list-style:none;
+    }
+       #sidebar .m2m-category-list li {
+      padding-top: 6px;
+      padding-left: 50px;
+      line-height:18px;
+      height: 37px;
+      background: transparent url('images/categories-blue.png') no-repeat top left;
+      }
+       #sidebar .m2m-category-list li.category-tips-and-tools {
+      background-position:0 -87px;
+    }   
+       #sidebar .m2m-category-list li.category-meet-to-marry-principles {
+      padding-top:2px;
+      height:41px;
+      background-position:0 -182px;
+    }   
+       #sidebar .m2m-category-list li.category-news-and-events {
+      background-position:0 -136px;
+    } 
+       #sidebar .m2m-category-list li.category-success-stories {
+      background-position:0 0;
+    }    
+       #sidebar .m2m-category-list li.category-commentary {
+      background-position:0 -43px;
+    }
+      
+#searchform {
+
+  }
+   #searchform div {
+    padding-bottom:2px;
+    border-bottom:1px solid #999;
+    }
+       #searchform div #searchsubmit {
+      margin-right:2px;
+      background-image:url('images/magnifying-glass.gif');
+      background-repeat:no-repeat;
+      background-color:#fff;
+      width:19px;height:20px;
+      float:left;
+      text-indent:-9999px;
+      border:0;
+    }
+       #searchform div input {
+      font-family: IntervalSansPro-Regular, Arial;
+      color:#999;
+      font-size:13px;
+      line-height:20px;
+      border:0;
+      float:left;
+    }
+
+#sidebar .post-tags {
+  margin-bottom:20px;
+  }
+   #sidebar .post-tags a {
+    font-size:15px !important;
+    line-height:21px !important;
+    font-family: IntervalSansPro-It, Arial !important;
+  }
