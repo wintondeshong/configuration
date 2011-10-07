@@ -129,6 +129,7 @@ alias gpoprod='git push origin master:master'
 ## FILE SYSTEM
 ##############################
 
+alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 alias l='ls -a'
 alias ll='ls -la'
 
