@@ -63,7 +63,7 @@
 (require 'starter-kit-lisp)
 (require 'starter-kit-perl)
 (require 'starter-kit-ruby)
-(require 'starter-kit-js)
+;;(require 'starter-kit-js)
 
 (regen-autoloads)
 (load custom-file 'noerror)
@@ -98,5 +98,17 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+;; Setup RSense
+(setq rsense-home "/Users/wintondeshong/.emacs.d/rsense-0.3")
+(add-to-list 'load-path (concat rsense-home "/etc"))
+(require 'rsense)
+
+;; Add RSense & Auto-Complete shortcuts
+;; Complete by C-c .
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
+
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)

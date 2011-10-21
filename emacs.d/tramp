@@ -1,0 +1,11 @@
+;; -*- emacs-lisp -*-
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["sudo" "root" "localhost" nil]
+  ("uname" "Darwin 11.2.0")
+  ("test" "test")
+  ("remote-path"
+   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("file-exists" "test -e")))
