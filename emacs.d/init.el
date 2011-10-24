@@ -109,6 +109,10 @@
           (lambda ()
             (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
 
+;; Load RVM support for Emacs
+;; @see https://github.com/senny/rvm.el
+(load-file "~/.emacs.d/rvm.el")
+
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
 (put 'erase-buffer 'disabled nil)
