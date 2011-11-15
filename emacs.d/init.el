@@ -63,7 +63,7 @@
 (require 'starter-kit-lisp)
 (require 'starter-kit-perl)
 (require 'starter-kit-ruby)
-;;(require 'starter-kit-js)
+(require 'starter-kit-js)
 
 (regen-autoloads)
 (load custom-file 'noerror)
@@ -93,10 +93,34 @@
 (load-file "~/.emacs.d/my-functions.el")
 
 ;; Setup Auto-Complete
-(load-file "~/.emacs.d/auto-complete.el")
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+
+;; Configure Auto-Complete
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+; Load the default configuration
+(require 'auto-complete-config)
+; Make sure we can find the dictionaries
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
+; Use dictionaries by default
+(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
+(global-auto-complete-mode t)
+; Start auto-completion after 2 characters of a word
+(setq ac-auto-start 2)
+; case sensitivity is important when finding matches
+(setq ac-ignore-case nil)
+
+;; Setup Javascript
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+;; Load the library
+(require 'yasnippet)
+(yas/initialize)
+;; Load the snippet files themselves
+(yas/load-directory "~/.emacs.d/yasnippet/snippets/text-mode")
+;; Let's have snippets in the auto-complete dropdown
+(add-to-list 'ac-sources 'ac-source-yasnippet)
+(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 
 ;; Setup RSense
 (setq rsense-home "/Users/wintondeshong/.emacs.d/rsense-0.3")
@@ -112,6 +136,52 @@
 ;; Load RVM support for Emacs
 ;; @see https://github.com/senny/rvm.el
 (load-file "~/.emacs.d/rvm.el")
+
+;; Load Lintnode
+;;(add-to-list 'load-path "~/Documents/lintnode")
+;;(require 'flymake-jslint)
+;; Make sure we can find the lintnode executable
+;;(setq lintnode-location "~/Documents/lintnode")
+;; JSLint can be... opinionated
+;;(setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
+;; Start the server when we first open a js file and start checking
+;;(add-hook 'js-mode-hook
+;;(lambda ()
+;; (lintnode-hook)))
+
+;; Load Flymake Cursor
+;;(add-to-list 'load-path "~/.emacs.d/flymake-cursor.el")
+;; Nice Flymake minibuffer messages
+;;(require 'flymake-cursor)
+
+;; Line Numbers
+(line-number-mode 1)
+
+; allows syntax highlighting to work
+ (global-font-lock-mode 1)
+
+;; Load CEDET.
+;; This is required by ECB which will be loaded later.
+;; See cedet/common/cedet.info for configuration details.
+(load-file "~/.emacs.d/cedet/common/cedet.el")
+
+;; Enable EDE (Project Management) features
+(global-ede-mode 1)
+
+;; * This enables the database and idle reparse engines
+(semantic-load-enable-minimum-features)
+
+;; * This enables some tools useful for coding, such as summary mode
+;;   imenu support, and the semantic navigator
+(semantic-load-enable-code-helpers)
+
+;; ECB
+(add-to-list 'load-path "~/.emacs.d/ecb")
+(load-file "~/.emacs.d/ecb/ecb.el")
+(ecb-source-path (quote ("~/Desktop/rails_training/Ping_Pong")))
+'(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+'(ecb-tip-of-the-day nil)
+'(ecb-tree-buffer-style (quote ascii-guides)))
 
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
