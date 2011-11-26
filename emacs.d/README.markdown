@@ -1,5 +1,5 @@
-// General Installation Notes
-// --------------------------
+# General Installation Notes
+# --------------------------------
 1. CEDET / ECB - You must byte compile CEDET - @see http://appsintheopen.com/articles/1-setting-up-emacs-for-rails-development/part/6-setting-up-the-emacs-code-browser
 
    C-x C-f <path_to_cedet>/cedet-build.el
@@ -8,8 +8,8 @@
 
 
 
-// Emacs Starter Kit
-// -----------------
+# Emacs Starter Kit
+# ---------------------
 
 The Starter Kit should provide a saner set of defaults than you get
 normally with Emacs. It was originally intended for beginners, but it
