@@ -123,7 +123,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 
 ;; Setup RSense
-(setq rsense-home "/Users/wintondeshong/.emacs.d/rsense-0.3")
+(setq rsense-home "/Users/winton/.emacs.d/rsense-0.3")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
@@ -186,10 +186,21 @@
 '(ecb-layout-name "left14")
 '(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
 '(ecb-options-version "2.40")
-'(ecb-source-path (quote ("~/Desktop/rails_training/Ping-Pong" "~/Documents/work")))
+'(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Desktop/hack/rails_training/Ping-Pong" "~/Documents/work" "~/Documents/work/andCulture/Keas")))
 '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
 '(ecb-tip-of-the-day nil)
 '(ecb-tree-buffer-style (quote ascii-guides)))
+
+;; Cucumber Support
+;;(load "cucumber-mode")
+
+;; load bundle snippets
+;;(yas/load-directory "~/emacs.d/cucumber.el/snippets")
+
+;;(add-to-list 'auto-mode-alist '("\\.feature" . feature-mode))
+
+;; Tidy HTML
+(load-file "~/.emacs.d/tidy.el")
 
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
