@@ -133,6 +133,13 @@
           (lambda ()
             (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
 
+(load-file "~/.emacs.d/haml-mode.el")
+;; Add Haml-mode Shortcuts
+(add-hook 'haml-mode-hook
+                  '(lambda ()
+                         (setq indent-tabs-mode nil)
+                         (define-key haml-mode-map "\C-m" 'newline-and-indent)))
+
 ;; Load RVM support for Emacs
 ;; @see https://github.com/senny/rvm.el
 (load-file "~/.emacs.d/rvm.el")
@@ -186,7 +193,7 @@
 '(ecb-layout-name "left14")
 '(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
 '(ecb-options-version "2.40")
-'(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Desktop/hack/rails_training/Ping-Pong" "~/Documents/work" "~/Documents/work/andCulture/Keas")))
+'(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Desktop/hack/rails_training/Ping-Pong" "~/Documents/work" "~/Documents/work/andCulture/Keas/Keas")))
 '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
 '(ecb-tip-of-the-day nil)
 '(ecb-tree-buffer-style (quote ascii-guides)))
@@ -200,7 +207,18 @@
 ;;(add-to-list 'auto-mode-alist '("\\.feature" . feature-mode))
 
 ;; Tidy HTML
-(load-file "~/.emacs.d/tidy.el")
+(load-file "~/.emacs.d/tidy.elc")
+(autoload 'tidy-buffer "tidy" "Run Tidy HTML parser on current buffer" t)
+(autoload 'tidy-parse-config-file "tidy" "Parse the `tidy-config-file'" t)
+(autoload 'tidy-save-settings "tidy" "Save settings to `tidy-config-file'" t)
+(autoload 'tidy-build-menu  "tidy" "Install an options menu for HTML Tidy." t)
+
+(defun my-html-mode-hook () "Customize my html-mode."
+  (tidy-build-menu html-mode-map)
+  (local-set-key [(control c) (control c)] 'tidy-buffer)
+  (setq sgml-validate-command "tidy"))
+
+(add-hook 'html-mode-hook 'my-html-mode-hook)
 
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
