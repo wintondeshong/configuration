@@ -123,7 +123,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 
 ;; Setup RSense
-(setq rsense-home "/Users/winton/.emacs.d/rsense-0.3")
+(setq rsense-home "~/.emacs.d/rsense-0.3")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
@@ -247,7 +247,7 @@
 
 ;; Ruby Mode
 (add-to-list 'load-path "~/.emacs.d/ruby-mode.el") ; must be added after any path containing old ruby-mode
-(setq enh-ruby-program "/Users/winton/.rvm/rubies/ruby-1.9.3-p194/bin/ruby") ; so that still works if ruby points to ruby1.8
+(setq enh-ruby-program "~/.rvm/rubies/ruby-1.9.3-p194/bin/ruby") ; so that still works if ruby points to ruby1.8
 (require 'ruby-mode)
 
 ;; Less CSS Mode
