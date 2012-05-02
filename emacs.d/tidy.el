@@ -228,7 +228,7 @@ browse the documentation strings associated with each option.
 ")
 
 
-(defcustom tidy-config-file "~/.tidyrc"
+(defcustom tidy-config-file "~/.emacs.d/.tidyrc"
   "*Path to your default tidy configuration file.
 
 This is used by `tidy-parse-config-file' to synchronise Tidy's behaviour

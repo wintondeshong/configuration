@@ -267,8 +267,8 @@ Setup buffer for parse.
 
 ;;;***
 
-;;;### (autoloads nil nil ("cogre-load.el" "wisent-dot-wy.el") (20161
-;;;;;;  58905 318051))
+;;;### (autoloads nil nil ("cogre-load.el" "wisent-dot-wy.el") (20177
+;;;;;;  26183 477261))
 
 ;;;***
 

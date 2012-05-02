@@ -62,7 +62,7 @@
 (require 'starter-kit-eshell)
 (require 'starter-kit-lisp)
 (require 'starter-kit-perl)
-(require 'starter-kit-ruby)
+;; (require 'starter-kit-ruby)
 (require 'starter-kit-js)
 
 (regen-autoloads)
@@ -182,6 +182,16 @@
 ;;   imenu support, and the semantic navigator
 (semantic-load-enable-code-helpers)
 
+;; actionscript mode
+(load-file "~/.emacs.d/actionscript-mode.el")
+
+;;;_ , Word documents
+(load-file "~/.emacs.d/no-word.el")
+;; (when (locate-library "no-word")
+;;   (require 'no-word)
+;;   (add-to-list 'auto-mode-alist '("\\.doc\\'" . no-word)))
+
+;; ecb menu
 (add-to-list 'load-path "~/.emacs.d/ecb")
 (load-file "~/.emacs.d/ecb/ecb.el")
 
@@ -193,7 +203,7 @@
 '(ecb-layout-name "left14")
 '(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
 '(ecb-options-version "2.40")
-'(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Desktop/hack/rails_training/Ping-Pong" "~/Documents/work" "~/Documents/work/andCulture/Keas/Keas")))
+'(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Documents/work" "~/Documents/work/andCulture/Winestore" "~/Documents/work/andCulture/GetSatisfaction" "~/Documents/work/andCulture/HatchBck/hatchbck-web")))
 '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
 '(ecb-tip-of-the-day nil)
 '(ecb-tree-buffer-style (quote ascii-guides)))
@@ -219,6 +229,29 @@
   (setq sgml-validate-command "tidy"))
 
 (add-hook 'html-mode-hook 'my-html-mode-hook)
+
+;; Markdown
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.text" . markdown-mode) auto-mode-alist))
+
+;; JSHint
+(add-to-list 'load-path "~/.emacs.d/jshint-mode")
+(require 'flymake-jshint)
+(add-hook 'javascript-mode-hook
+     (lambda () (flymake-mode t)))
+
+;; Enable fly-make by default
+;;(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+;; Ruby Mode
+(add-to-list 'load-path "~/.emacs.d/ruby-mode.el") ; must be added after any path containing old ruby-mode
+(setq enh-ruby-program "/Users/winton/.rvm/rubies/ruby-1.9.3-p194/bin/ruby") ; so that still works if ruby points to ruby1.8
+(require 'ruby-mode)
+
+;; Less CSS Mode
+(load-file "~/.emacs.d/less-css-mode.el")
 
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
