@@ -38,16 +38,17 @@
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
-;; Disable word-wrapping
-(setq default-truncate-lines t)
-
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
 (require 'ido)
 ;; Display ido results vertically, rather than horizontally
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 
+;; Rinari Features
+(require 'find-file-in-project)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
+
 ;; Textmate Minor
-(add-to-list 'load-path "~/.emacs.d/textmate.el")
+(add-to-list 'load-path "~/.emacs.d/vendor/textmate.el")
 (require 'textmate)
 (textmate-mode)
 
