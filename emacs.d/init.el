@@ -9,14 +9,101 @@
 ;; and brighter; it simply makes everything else vanish."
 ;; -Neal Stephenson, "In the Beginning was the Command Line"
 
-;; Turn off mouse interface early in startup to avoid momentary display
-;; You really don't need these; trust me.
-;;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-;;(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;;(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(push "/usr/local/bin" exec-path)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(delete-selection-mode t)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(blink-cursor-mode t)
+(show-paren-mode t)
+(column-number-mode t)
+(set-fringe-style -1)
+(tooltip-mode -1)
+
+;; theme
+;;(set-frame-font "Menlo-16")
+(load-theme 'tango)
+
+;; load el-get
+(require 'package)
+(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+(package-initialize)
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(require 'el-get)
+
+(setq el-get-sources
+      '((:name ruby-mode
+               :type elpa
+               :load "ruby-mode.el"
+               :after (lambda () (ruby-mode-hook)))
+        (:name inf-ruby :type elpa)
+        (:name ruby-compilation :type elpa)
+        (:name css-mode
+               :type elpa
+               :after (lambda () (css-mode-hook)))
+        (:name textmate
+               :type git
+               :url "git://github.com/defunkt/textmate.el"
+               :load "textmate.el")
+        (:name rvm
+               :type git
+               :url "http://github.com/djwhitt/rvm.el.git"
+               :load "rvm.el"
+               :compile ("rvm.el")
+               :after (lambda() (rvm-use-default)))
+        (:name rhtml
+               :type git
+               :url "https://github.com/eschulte/rhtml.git"
+               :features rhtml-mode
+               :after (lambda () (rhtml-mode-hook)))
+        (:name yaml-mode
+               :type git
+               :url "http://github.com/yoshiki/yaml-mode.git"
+               :features yaml-mode
+               :after (lambda () (yaml-mode-hook)))))
+(el-get 'sync)
+
+
+;; Ruby/RHTML/YAML/CSS Modes configuration
+(defun ruby-mode-hook ()
+  (autoload 'ruby-mode "ruby-mode" nil t)
+  (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+  (add-hook 'ruby-mode-hook '(lambda ()
+                               (setq ruby-deep-arglist t)
+                               (setq ruby-deep-indent-paren nil)
+                               (setq c-tab-always-indent nil)
+                               (require 'inf-ruby)
+                               (require 'ruby-compilation))))
+(defun rhtml-mode-hook ()
+  (autoload 'rhtml-mode "rhtml-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
+  (add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
+  (add-hook 'rhtml-mode '(lambda ()
+                           (define-key rhtml-mode-map (kbd "M-s") 'save-buffer))))
+(defun yaml-mode-hook ()
+  (autoload 'yaml-mode "yaml-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
+(defun css-mode-hook ()
+  (autoload 'css-mode "css-mode" nil t)
+  (add-hook 'css-mode-hook '(lambda ()
+                              (setq css-indent-level 2)
+                              (setq css-indent-offset 2))))
+
 
 ;; Automatically save desktop in current directory
 (desktop-save-mode 1)
+(setq stack-trace-on-error t)
 
 ;; Load path etc.
 
@@ -47,7 +134,7 @@
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 
 ;; Textmate Minor
-(add-to-list 'load-path "~/.emacs.d/textmate.el")
+;; (add-to-list 'load-path "~/.emacs.d/textmate.el")
 (require 'textmate)
 (textmate-mode)
 
@@ -161,31 +248,9 @@
              (setq indent-tabs-mode nil)
              (define-key haml-mode-map "\C-m" 'newline-and-indent)))
 
-;; Load RVM support for Emacs
-;; @see https://github.com/senny/rvm.el
-(load-file "~/.emacs.d/rvm.el")
-
-;; Load Lintnode
-;;(add-to-list 'load-path "~/Documents/lintnode")
-;;(require 'flymake-jslint)
-;; Make sure we can find the lintnode executable
-;;(setq lintnode-location "~/Documents/lintnode")
-;; JSLint can be... opinionated
-;;(setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
-;; Start the server when we first open a js file and start checking
-;;(add-hook 'js-mode-hook
-;;(lambda ()
-;; (lintnode-hook)))
-
-;; Load Flymake Cursor
-;;(add-to-list 'load-path "~/.emacs.d/flymake-cursor.el")
-;; Nice Flymake minibuffer messages
-;;(require 'flymake-cursor)
 
 ;; Line Numbers
 (line-number-mode 1)
-
-                                        ; allows syntax highlighting to work
 (global-font-lock-mode 1)
 
 ;; Load CEDET.
@@ -224,18 +289,10 @@
  '(ecb-layout-name "left14")
  '(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("~/Desktop/hack/rails_training" "~/Desktop/hack/rails_training/community/ruby" "~/Documents/work" "~/Documents/work/andCulture/Winestore" "~/Documents/work/andCulture/GetSatisfaction" "~/Documents/work/andCulture/HatchBck/hatchbck-web")))
+ '(ecb-source-path (quote ("~/Documents/Clients ~/Documents/Clients/hatchbck-web ~/Documents/Clients/kingston-classic")))
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
  '(ecb-tip-of-the-day nil)
  '(ecb-tree-buffer-style (quote ascii-guides)))
-
-;; Cucumber Support
-;;(load "cucumber-mode")
-
-;; load bundle snippets
-;;(yas/load-directory "~/emacs.d/cucumber.el/snippets")
-
-;;(add-to-list 'auto-mode-alist '("\\.feature" . feature-mode))
 
 ;; Tidy HTML
 (load-file "~/.emacs.d/tidy.elc")
@@ -263,13 +320,10 @@
 (add-hook 'javascript-mode-hook
           (lambda () (flymake-mode t)))
 
-;; Enable fly-make by default
-;;(add-hook 'find-file-hook 'flymake-find-file-hook)
-
 ;; Ruby Mode
-(add-to-list 'load-path "~/.emacs.d/ruby-mode.el") ; must be added after any path containing old ruby-mode
-(setq enh-ruby-program "~/.rvm/rubies/ruby-1.9.3-p194/bin/ruby") ; so that still works if ruby points to ruby1.8
-(require 'ruby-mode)
+;; (add-to-list 'load-path "~/.emacs.d/ruby-mode.el") ; must be added after any path containing old ruby-mode
+;; (setq enh-ruby-program "~/.rvm/rubies/ruby-1.9.3-p194/bin/ruby") ; so that still works if ruby points to ruby1.8
+;; (require 'ruby-mode)
 
 ;; Less CSS Mode
 (load-file "~/.emacs.d/less-css-mode.el")
