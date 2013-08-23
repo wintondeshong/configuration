@@ -136,6 +136,7 @@
 
 ;; Disable word-wrapping
 (setq default-truncate-lines t)
+(auto-fill-mode -1)
 
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
 (require 'ido)
