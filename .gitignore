@@ -2,7 +2,7 @@
 emacs.d/backups
 emacs.d/auto-save-list
 emacs.d/.cask
-emacs.d/.emacs-desktop
-emacs.d/.emacs-desktop.lock
+emacs.d/.emacs.desktop
+emacs.d/.emacs.desktop.lock
 emacs.d/projectile-bookmarks.eld
 emacs.d/projectile.cache
