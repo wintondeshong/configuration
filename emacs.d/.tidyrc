@@ -1,6 +1,0 @@
-// HTML Tidy configuration file 
-bare: yes
-indent: auto
-indent-spaces: 2
-wrap: 0
-char-encoding: utf8
