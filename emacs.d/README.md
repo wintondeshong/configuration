@@ -57,10 +57,10 @@ Highlights
 - [f3] : uncomment-region
 - [f5] : indent-region
 
-- Command-t : Fuzzy Search current Projectile Project
-- Command-/ : Switch Projectile Project
-- Command-Shift-f : Grep Projectile Project
-- Command-<escape> : Clear Projectile Project Cache
+- Command-t or Alt-t: Fuzzy Search current Projectile Project
+- Command-/ or Alt-/: Switch Projectile Project
+- Command-Shift-f or Alt-Shift-f: Grep Projectile Project
+- Command-<escape> or Alt-<escape>: Clear Projectile Project Cache
 
 ### Project Management
 - Projectile
