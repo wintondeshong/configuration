@@ -19,10 +19,17 @@ Requirements
     cask install
     ```
 
+- JSHint Mode
+
+    ```
+    npm install -g jshint-mode
+    ```
+
 - Update unique system paths
 
     - Ruby Path for enh-ruby-mode in 'custom/01ruby.el'
     - Cask Version Number for auto complete dictionary path in 'custom/03auto-complete.el'
+
 
 
 Highlights

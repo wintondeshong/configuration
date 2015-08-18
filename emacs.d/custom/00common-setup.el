@@ -66,7 +66,7 @@
 (global-set-key "\C-xt" 'select-frame-by-name)
 
 ;; Themes
-(load-theme 'solarized-dark)
+(load-theme 'solarized-dark t)
 ;(load-theme 'Deviant t)
 ;(load-theme 'solarized t)
 ;(color-theme-solarized-dark)
