@@ -1,4 +1,4 @@
-(setq enh-ruby-program "~/.rvm/rubies/ruby-2.0.0-p247/bin/ruby")
+(setq enh-ruby-program "~/.rvm/rubies/ruby-2.2.2/bin/ruby")
 (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
@@ -52,8 +52,9 @@ of FILE in the current directory, suitable for creation"
             (local-set-key (kbd "C-c k") 'rspec-compile-file)
             ))
 
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
-(add-hook 'robe-mode-hook 'robe-ac-setup)
+; todo: error loading
+;(add-hook 'enh-ruby-mode-hook 'robe-mode)
+;(add-hook 'robe-mode-hook 'robe-ac-setup)
 
 (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
   (rvm-activate-corresponding-ruby))

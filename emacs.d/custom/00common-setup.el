@@ -15,8 +15,8 @@
 (scroll-bar-mode -1)
 
 ;; Disable backups
-(setq make-backup-files nil)
 (setq backup-inhibited t)
+(setq make-backup-files nil)
 
 ;; Disable auto save
 (setq auto-save-default nil)
@@ -34,6 +34,9 @@
 
 ;; Disable soft-wrap
 (setq truncate-partial-width-windows nil)
+
+;; keyboard scroll one line at a time
+(setq scroll-step 1)
 
 ;; Enable left-column line numbers
 (autoload 'linum-mode "linum" "toggle line numbers on/off" t)
@@ -63,10 +66,12 @@
 (global-set-key "\C-xt" 'select-frame-by-name)
 
 ;; Themes
-(color-theme-initialize)
-;;(color-theme-ld-dark)
-(require 'color-theme-solarized)
-(load-theme 'solarized-dark t)
+(load-theme 'solarized-dark)
+;(load-theme 'Deviant t)
+;(load-theme 'solarized t)
+;(color-theme-solarized-dark)
+;(set-frame-parameter nil 'background-mode 'dark)
+;(set-terminal-parameter nil 'background-mode 'dark)
 
 (require 'ansi-color)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -77,3 +82,31 @@
   (toggle-read-only))
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+;; ========== Place Backup Files in Specific Directory ==========
+;; Enable backup files.
+;;(setq make-backup-files t)
+(setq make-backup-files nil)
+
+;disable backup
+(setq backup-inhibited t)
+
+;disable auto save
+(setq auto-save-default nil)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 20   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
+
+;; Enable versioning with default values (keep five last versions, I think!)
+;;(setq version-control t)
+
+;; Save all backup file in this directory.
+;;(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+
+;; Configure Exec Path
+(setq exec-path (append exec-path '("/usr/local/Cellar" "/Users/winton/.nvm/v0.11.9/bin/")))

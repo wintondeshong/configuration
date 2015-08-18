@@ -5,7 +5,7 @@
 
 (load "00common-setup.el")
 (load "01ruby.el")
-;(load "02org.el")
+(load "02org.el")
 (load "03auto-complete.el")
 ;(load "04web-mode.el")
 (load "05projectile.el")
@@ -13,3 +13,6 @@
 (load "07javascript.el")
 (load "08anything.el")
 (load "09html.el")
+;(load "10python.el")
+;(load "11php-mode.el")
+(load "12desktop-menu.el")

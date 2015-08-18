@@ -1,5 +1,6 @@
 .DS_Store
 emacs.d/backups
+emacs.d/bookmarks
 emacs.d/auto-save-list
 emacs.d/.cask
 emacs.d/.emacs.desktop
