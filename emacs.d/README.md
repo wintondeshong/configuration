@@ -1,7 +1,7 @@
 Requirements
 ================
 
-- Install Emacs 24.3 +
+- Install Emacs 24.5 +
 
     ```
     brew install emacs —use-git-head —cocoa —srgb
