@@ -124,6 +124,11 @@ alias gpowork='git push origin working:working'
 alias gpostage='git push origin staging:staging'
 alias gpoprod='git push origin master:master'
 
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 
 ##############################
 ## FILE SYSTEM
@@ -132,31 +137,8 @@ alias gpoprod='git push origin master:master'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 alias l='ls -a'
 alias ll='ls -la'
-alias cuc='cucumber -r features' # run all features in a given directory
 
 #### Shortcuts
-alias clients='cd ~/Documents/clients'
-
-#### Exports
-export EC2_HOME=~/.ec2
-export PATH=${PATH}:EC2_HOME/bin
-export EC2_PRIVATE_KEY=
-export EC2_CERT=
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
-export AWS_RDS_HOME=~/Documents/hacking/Tools/RDSCLi-1.9.002/
-export PATH=$PATH:$AWS_RDS_HOME/bin
-export AWS_CREDENTIAL_FILE=$AWS_RDS_HOME/credential-file-path.template
-
-export PATH=${PATH}:/usr/local/share/npm/bin
-export PATH=${PATH}:/usr/local/sbin
-export PATH=/usr/local/bin:${PATH}
-export PATH=${PATH}:/Applications/adt-bundle-mac/sdk/platform-tools:/Applications/adt-bundle-mac/sdk/tools
-export PATH="$HOME/.cask/bin:$PATH"
-export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
-
-export PATH
+alias be='cd ~/Projects/be'
+alias fe='cd ~/Projects/fe'
+alias projects='cd ~/Projects'
